@@ -1,0 +1,27 @@
+<h2 id="greeting">
+  Hi, <%= @user.username.capitalize %>!<br/>
+  <small>Here is your content:</small>
+</h2>
+
+<div class="container">
+  <div class="row row-same-height">
+    <div class="col-md-4 column_border">
+      <h4 class="column_title">Exercises</h4>
+      <p>Unfortunately, there are currently no exercises to display. However, you can create new           ones.</p>
+      <%= link_to 'View all', '#', class: "link_button" %>
+      <%= link_to 'Create a new one', '#', class: "link_button" %>
+    </div>
+    <div class="col-md-4 column_border">
+      <h4 class="column_title">Workouts</h4>
+      <p>Unfortunately, there are currently no workouts to display. However, you can create new           ones.</p>
+      <%= link_to 'View all', '#', class: "link_button" %>
+      <%= link_to 'Create a new one', '#', class: "link_button" %>
+    </div>
+    <div class="col-md-4">
+      <h4 class="column_title">Training Plans</h4>
+      <p>Unfortunately, there are currently no training plans to display. However, you can create new           ones.</p>
+      <%= link_to 'View all', '#', class: "link_button" %>
+      <%= link_to 'Create a new one', '#', class: "link_button" %>
+    </div>
+  </div>
+</div>

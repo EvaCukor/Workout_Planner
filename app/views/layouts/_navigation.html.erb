@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">Workout Planner</span>
+    </div>
+    <ul class="nav navbar-nav">
+      <%= nav_link 'My Content', user_path(@user.username) %>
+      <%= nav_link 'Exercises', '#' %>    
+      <%= nav_link 'Workouts', '#' %>
+      <%= nav_link 'Training Plans', '#' %>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <p class="navbar-text">Signed in as <%= @user.username %></p>
+      <li><%= nav_link 'Logout', logout_path %></li>
+    </ul>
+  </div>
+</nav>

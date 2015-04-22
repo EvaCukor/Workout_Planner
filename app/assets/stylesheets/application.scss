@@ -1,0 +1,129 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#homepage {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-image: url("bk-eco-ga.jpg");
+}
+
+#app_name {
+  color: white;
+  text-align: center;
+  font-size: 3.25em;
+  margin: 50px 0 20px 0;
+}
+
+#registration_container {
+  width: 30%;  
+  background: rgba(255, 255, 255, 0.275); 
+  padding: 20px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.homepage_text {
+  color: white;
+  font-weight: normal;
+}
+
+.homepage_desc {
+  text-align: center;
+  margin: 0 auto 30px;
+  width: 35%;
+}
+
+.errors {
+  width: 30%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.button, .button:visited {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.button:hover, .button:active { 
+  background-color: white;
+  border-color: white;
+  color: #339999;
+}
+
+.link, .link:visited {
+  float: right;
+  color: white;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5px 7px;
+  border-radius: 5px;
+}
+
+.link:hover, .link:active {
+  text-decoration: none;
+  background-color: white;
+  color: #339999;
+}
+
+.navbar-default {
+  background-image: url("bk-eco-ga.jpg");
+}
+
+.nav.navbar-nav li a, .nav.navbar-nav p, .navbar-default .navbar-brand {
+  color: white;
+}
+
+.nav.navbar-nav li a:hover, .nav.navbar-nav li.active a, .nav.navbar-nav li.active a:hover {
+  color: #339999;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-default .navbar-brand:hover {
+  color: white;
+}
+
+#greeting {
+  text-align: center;
+  color: #339999;
+  margin: 30px 0 40px 0;
+}
+
+.column_title {
+  color: #339999;
+  margin-bottom: 25px;
+}
+
+.column_border {
+  border-right: solid 1px #339999;
+}
+
+.row {
+    display: table;
+}
+
+[class^="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.link_button, .link_button:visited {
+  float: left;
+  color: #339999;
+  text-decoration: none;
+  background: white;
+  border: solid 1px #339999;
+  padding: 5px 7px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 17px;
+}
+
+.link_button:hover, .link_button:active {
+  text-decoration: none;
+  background-color: #339999;
+  color: white;
+}

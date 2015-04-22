@@ -1,0 +1,31 @@
+<% if flash[:errors] %>
+  <div class="errors">
+    <div class="alert alert-danger" role="alert">
+      <% flash[:errors].keys.each do |key| %>
+        <% flash[:errors][key].each_index do |index| %>
+          <%= key.capitalize + ' ' + flash[:errors][key][index].to_s + '.' %><br/>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p class="homepage_desc homepage_text">
+  Welcome! Here you can create completely customized workouts and share them with other users. If you have yet to experience what this website offers, then please register below. Otherwise, follow the link to the login page. 
+  </p>
+<% end %>
+<div id="registration_container" class="container">
+  <%= link_to 'Log in', login_path, class: "link" %><br/>
+  <%= form_for @user, url: root_path do |f| %>
+    <div class="form-group"> 
+      <%= f.label :username, class: "homepage_text" %>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class: "homepage_text" %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group homepage_text">
+      <%= f.submit 'Register', class: 'btn button' %>
+    </div>
+  <% end %>
+</div>
