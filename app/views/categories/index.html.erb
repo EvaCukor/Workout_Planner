@@ -1,0 +1,39 @@
+<% if flash.any? %>
+  <%= render 'shared/flash_messages' %>
+<% end %>
+
+<%= render 'shared/errors', obj: @category %>
+
+<div class="container">
+  <%= form_for @category, html: {class: "form-inline", role: "form"} do |f| %>
+    <div class="form-group"> 
+      <%= f.label :name, 'New category:' %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.submit 'Save', class: 'btn' %>
+    </div>
+  <% end %>
+  <br/>
+  <div class="row row-same-height">
+    <div class="col-md-3 column_border">
+      <h4 class="column_title">Categories</h4>
+      <% if @categories.nil? %>
+        <p>There are currently no categories to display.<p>
+      <% else %>
+        <% @categories.each do |category| %>
+          <%= link_to category.name.capitalize, category_path(category), remote: true, id: category.id %><br/>        
+        <% end %>
+      <% end %>
+    </div>
+    <div id="second_column" class="col-md-4">
+      <div id="exercises">
+      </div>
+      <div id="workouts">
+        Workouts
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="exercise">
+      </div>
+    </div>
+  </div>
+</div>

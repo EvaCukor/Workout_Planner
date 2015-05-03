@@ -1,0 +1,54 @@
+<h4 class="column_title"><%= @exercise.name.capitalize %></h4>
+
+<!--     <%= link_to @exercise, method: :delete, :remote => true, data: { confirm: 'Are you sure you want to delete this?' } do %>
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %> -->
+
+<!-- Modal -->
+<% if logged_in? && (current_user == @exercise.creator) %>
+  <p>
+    <%= link_to edit_exercise_path(@exercise), obj: @exercise do %>
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    <a><span class="glyphicon glyphicon-trash" data-toggle='modal' data-target="#deleteModal">Delete</span></a>
+  </p>
+<% end %>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Delete', @exercise, class: 'btn btn-danger', method: :delete %>
+        <%= link_to 'Cancel', exercises_path, class: 'btn btn-default' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dl class="dl-horizontal">
+  <% unless @exercise.description.empty? %>
+    <dt>Description:</dt>
+    <dd><%= @exercise.description.capitalize %></dd>
+  <% end %>
+  <% unless @exercise.equipment_pieces.first.nil? %>
+    <dt>Necessary equipment:</dt>
+    <% @exercise.equipment_pieces.each do |equipment| %>
+      <dd><%= equipment.name.capitalize %></dd>
+    <% end %>
+  <% end %>
+  <dt>Targeted body part:</dt>
+  <% @exercise.body_parts.each do |body_part| %>
+    <dd><%= body_part.name.capitalize %></dd>
+  <% end %>
+  <dt>Difficulty:</dt>
+  <dd><%= @exercise.difficulty %></dd>
+  <% unless @exercise.categories.first.nil? %>
+    <dt>Category:</dt>
+    <% @exercise.categories.each do |category| %>
+      <dd><%= category.name.capitalize %></dd>
+    <% end %>
+  <% end %>
+</dl>

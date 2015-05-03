@@ -4,13 +4,14 @@
       <span class="navbar-brand">Workout Planner</span>
     </div>
     <ul class="nav navbar-nav">
-      <%= nav_link 'My Content', user_path(@user.username) %>
-      <%= nav_link 'Exercises', '#' %>    
+      <%= nav_link 'My Content', user_path(current_user.username) %>
+      <%= nav_link 'Exercises', exercises_path %>    
       <%= nav_link 'Workouts', '#' %>
-      <%= nav_link 'Training Plans', '#' %>
+      <%= nav_link 'Equipment', equipment_pieces_path %>
+      <%= nav_link 'Categories', categories_path %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <p class="navbar-text">Signed in as <%= @user.username %></p>
+      <p class="navbar-text">Signed in as <%= current_user.username %></p>
       <li><%= nav_link 'Logout', logout_path %></li>
     </ul>
   </div>

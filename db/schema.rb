@@ -11,7 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418171553) do
+ActiveRecord::Schema.define(version: 20150425133821) do
+
+  create_table "body_parts", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipment_pieces", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exercise_body_parts", force: true do |t|
+    t.integer "exercise_id"
+    t.integer "body_part_id"
+  end
+
+  create_table "exercise_categories", force: true do |t|
+    t.integer "exercise_id"
+    t.integer "category_id"
+  end
+
+  create_table "exercise_equipment_pieces", force: true do |t|
+    t.integer "exercise_id"
+    t.integer "equipment_piece_id"
+  end
+
+  create_table "exercises", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "difficulty"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"

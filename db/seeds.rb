@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+BodyPart.create([{ name: 'Total Body' }, { name: 'Core' }, { name: 'Lower Body' }, { name: 'Upper Body' }])
+
+EquipmentPiece.create(name: 'None')

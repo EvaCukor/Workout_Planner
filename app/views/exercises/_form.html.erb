@@ -1,0 +1,42 @@
+<div class="container">
+  <%= form_for @exercise do |f| %>
+    <div class="form-group"> 
+      <%= f.label :name, 'Title' %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label 'Targeted Body Part' %><br/>
+      <%= f.collection_check_boxes :body_part_ids, BodyPart.all, :id, :name do |bp| %>
+        <% bp.label(class: "checkbox-inline") {bp.check_box(class: "checkbox") + bp.text} %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label 'Equipment' %><br/>
+      <%= f.collection_check_boxes :equipment_piece_ids, EquipmentPiece.all, :id, :name do |equipment| %>
+        <% equipment.label(class: "checkbox-inline") {equipment.check_box(class: "checkbox") + equipment.text.capitalize} %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label 'Categories' %><br/>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cat| %>
+        <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :difficulty, 'Difficulty Level' %><br/>
+      <% i = 1 %>
+      <% until i > 5 do %>
+        <%= f.radio_button :difficulty, i, class: 'radio-inline' %> <%= i %>
+        <% i+= 1 %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Save', class: 'btn' %>
+      <%= f.submit 'Cancel', class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+</div>

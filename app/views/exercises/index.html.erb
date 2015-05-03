@@ -1,0 +1,30 @@
+<% if flash.any? %>
+  <%= render 'shared/flash_messages' %>
+<% end %>
+
+<div class="container">
+  <%= link_to 'Create a new exercise', new_exercise_path, class: "link_button" %>
+  <% if @exercises.empty? %>
+    <p>There are currently no exercises to display. However, you can create a new exercise by clicking on the button above.</p>
+  <% else %>
+    <div class="row row-same-height">
+      <div class="col-md-3 column_border">
+        <h4 class="column_title">Filtering Criteria</h4>
+        <p>Filters</p>
+      </div>
+      <div class="col-md-3 column_border">
+        <h4 class="column_title">Exercises</h4>
+        <div id="exercises_list">
+          <%= render 'exercises_list', object: @exercises %>
+        </div>        
+      </div>
+      <div class="col-md-6">
+        <div id="exercise">
+          <% if session[:exercise_id] %>
+            <%= render 'exercise' %>
+          <% end %>
+        </div>
+      </div>
+    </div>  
+  <% end %>
+</div>  

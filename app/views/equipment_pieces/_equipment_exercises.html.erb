@@ -1,0 +1,9 @@
+<h4 class="column_title">Exercises with the following equipment: "<%= @equipment.name.downcase %>"</h4>
+
+<% if @equipment.exercises.empty? %>
+  <p>There are no exercises requiring the following equipment: '<%= @equipment.name %>'.</p>
+<% else %>
+  <div id="exercises_list">
+    <%= render 'exercises/exercises_list', object: @equipment.exercises %>          
+  </div> 
+<% end %>

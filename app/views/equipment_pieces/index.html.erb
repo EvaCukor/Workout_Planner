@@ -1,0 +1,36 @@
+<% if flash.any? %>
+  <%= render 'shared/flash_messages' %>
+<% end %>
+
+<%= render 'shared/errors', obj: @equipment %>
+
+<div class="container">
+  <%= form_for @equipment, html: {class: "form-inline", role: "form"} do |f| %>
+    <div class="form-group"> 
+      <%= f.label :name, 'New equipment:' %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.submit 'Save', class: 'btn' %>
+    </div>
+  <% end %>
+  <br/>
+  <div class="row row-same-height">
+    <div class="col-md-3 column_border">
+      <h4 class="column_title">Equipment</h4>
+      <% if @equipment_pieces.nil? %>
+        <p>There is currently no equipment to display.<p>
+      <% else %>
+        <% @equipment_pieces.each do |equipment| %>
+          <%= link_to equipment.name.capitalize, equipment_piece_path(equipment), remote: true, id: equipment.id %><br/>        
+        <% end %>
+      <% end %>
+    </div>
+    <div id="second_column" class="col-md-4">
+      <div id="exercises">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="exercise">
+      </div>
+    </div>
+  </div>
+</div>

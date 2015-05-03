@@ -1,0 +1,7 @@
+<% object.each do |exercise| %>
+  <% if exercise.creator == current_user %>
+    <%= link_to exercise.name.capitalize + ' by me', exercise_path(exercise), remote: true, id: exercise.id %><br/>
+  <% else %>
+    <%= link_to exercise.name.capitalize + ' by ' + exercise.creator.username, exercise_path(exercise), remote: true, id: exercise.id %><br/>
+  <% end %>
+<% end %>

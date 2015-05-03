@@ -1,0 +1,9 @@
+<h4 class="column_title">Exercises in the category: <%= @category.name.downcase %></h4>
+
+<% if @category.exercises.empty? %>
+  <p>There are no exercises in the category '<%= @category.name %>'.</p>
+<% else %>
+  <div id="exercises_list">
+    <%= render 'exercises/exercises_list', object: @category.exercises %>          
+  </div> 
+<% end %>
