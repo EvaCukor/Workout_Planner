@@ -1,16 +1,15 @@
 <h4 class="column_title"><%= @exercise.name.capitalize %></h4>
 
-<!--     <%= link_to @exercise, method: :delete, :remote => true, data: { confirm: 'Are you sure you want to delete this?' } do %>
-      <span class="glyphicon glyphicon-trash"></span> Delete
-    <% end %> -->
-
 <!-- Modal -->
 <% if logged_in? && (current_user == @exercise.creator) %>
   <p>
-    <%= link_to edit_exercise_path(@exercise), obj: @exercise do %>
+    <%= link_to edit_exercise_path(@exercise), obj: @exercise, class: 'custom_icon' do %>
       <span class="glyphicon glyphicon-pencil"></span> Edit
     <% end %>
-    <a><span class="glyphicon glyphicon-trash" data-toggle='modal' data-target="#deleteModal">Delete</span></a>
+    &nbsp;
+    <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %>
   </p>
 <% end %>
 

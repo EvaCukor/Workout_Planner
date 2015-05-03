@@ -1,4 +1,4 @@
-<div class="container">
+<div id="form_container" class="container">
   <%= form_for @exercise do |f| %>
     <div class="form-group"> 
       <%= f.label :name, 'Title' %>
@@ -30,13 +30,13 @@
       <%= f.label :difficulty, 'Difficulty Level' %><br/>
       <% i = 1 %>
       <% until i > 5 do %>
-        <%= f.radio_button :difficulty, i, class: 'radio-inline' %> <%= i %>
+        <%= f.radio_button :difficulty, i, :checked => i == 1, class: 'radio-inline' %> <%= i %>
         <% i+= 1 %>
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.submit 'Save', class: 'btn' %>
       <%= f.submit 'Cancel', class: 'btn btn-warning' %>
+      <%= f.submit 'Save', class: 'btn confirmation_button' %>
     </div>
   <% end %>
 </div>

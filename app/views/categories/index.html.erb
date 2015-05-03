@@ -1,3 +1,5 @@
+<%= render 'shared/title', title: 'Categories' %>
+
 <% if flash.any? %>
   <%= render 'shared/flash_messages' %>
 <% end %>
@@ -9,18 +11,20 @@
     <div class="form-group"> 
       <%= f.label :name, 'New category:' %>
       <%= f.text_field :name, class: "form-control" %>
-      <%= f.submit 'Save', class: 'btn' %>
+      <%= f.submit 'Save', class: 'btn confirmation_button' %>
     </div>
   <% end %>
   <br/>
   <div class="row row-same-height">
     <div class="col-md-3 column_border">
-      <h4 class="column_title">Categories</h4>
+      <h4 class="column_title">All Categories</h4>
       <% if @categories.nil? %>
         <p>There are currently no categories to display.<p>
       <% else %>
-        <% @categories.each do |category| %>
-          <%= link_to category.name.capitalize, category_path(category), remote: true, id: category.id %><br/>        
+        <% @categories.each do |category| %>   
+          <%= link_to category_path(category), remote: true, id: category.id, class: 'listing' do %>
+            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + category.name.capitalize %>
+          <% end %><br />
         <% end %>
       <% end %>
     </div>

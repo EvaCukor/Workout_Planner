@@ -1,3 +1,5 @@
+<%= render 'shared/title', title: 'Equipment' %>
+
 <% if flash.any? %>
   <%= render 'shared/flash_messages' %>
 <% end %>
@@ -9,18 +11,20 @@
     <div class="form-group"> 
       <%= f.label :name, 'New equipment:' %>
       <%= f.text_field :name, class: "form-control" %>
-      <%= f.submit 'Save', class: 'btn' %>
+      <%= f.submit 'Save', class: 'btn confirmation_button' %>
     </div>
   <% end %>
   <br/>
   <div class="row row-same-height">
     <div class="col-md-3 column_border">
-      <h4 class="column_title">Equipment</h4>
+      <h4 class="column_title">All Equipment</h4>
       <% if @equipment_pieces.nil? %>
         <p>There is currently no equipment to display.<p>
       <% else %>
         <% @equipment_pieces.each do |equipment| %>
-          <%= link_to equipment.name.capitalize, equipment_piece_path(equipment), remote: true, id: equipment.id %><br/>        
+          <%= link_to equipment_piece_path(equipment), remote: true, id: equipment.id, class: 'listing' do %>
+            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + equipment.name.capitalize %>
+          <% end %><br />
         <% end %>
       <% end %>
     </div>

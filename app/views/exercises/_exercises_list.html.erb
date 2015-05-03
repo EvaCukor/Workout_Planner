@@ -1,7 +1,11 @@
 <% object.each do |exercise| %>
   <% if exercise.creator == current_user %>
-    <%= link_to exercise.name.capitalize + ' by me', exercise_path(exercise), remote: true, id: exercise.id %><br/>
+    <%= link_to exercise_path(exercise), remote: true, id: exercise.id, class: 'listing' do %>
+      <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + exercise.name.capitalize + ' by me' %>
+    <% end %><br />
   <% else %>
-    <%= link_to exercise.name.capitalize + ' by ' + exercise.creator.username, exercise_path(exercise), remote: true, id: exercise.id %><br/>
+    <%= link_to exercise_path(exercise), remote: true, id: exercise.id, class: 'listing' do %>
+      <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + exercise.name.capitalize + ' by ' + exercise.creator.username %>
+    <% end %><br />
   <% end %>
 <% end %>

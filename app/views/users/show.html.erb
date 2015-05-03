@@ -1,27 +1,26 @@
-<h2 id="greeting">
+<h1 id="greeting">
   Hi, <%= current_user.username.capitalize %>!<br/>
-  <small>Here is your content:</small>
-</h2>
+</h1>
 
 <div class="container">
   <div class="row row-same-height">
     <div class="col-md-4 column_border">
       <h4 class="column_title">Exercises</h4>
-      <p>Unfortunately, there are currently no exercises to display. However, you can create new           ones.</p>
-      <%= link_to 'View all', exercises_path, class: "link_button" %>
-      <%= link_to 'Create a new one', new_exercise_path, class: "link_button" %>
+      <p>You can enter your own exercises or view the exercises entered by other users, and then later you can use them to build workouts.</p>
+      <%= link_to 'View all', exercises_path, class: "link_button link_button_user_page" %>
+      <%= link_to 'Create a new one', new_exercise_path, class: "link_button link_button_user_page" %>
     </div>
     <div class="col-md-4 column_border">
       <h4 class="column_title">Workouts</h4>
-      <p>Unfortunately, there are currently no workouts to display. However, you can create new           ones.</p>
-      <%= link_to 'View all', '#', class: "link_button" %>
-      <%= link_to 'Create a new one', '#', class: "link_button" %>
+      <p>You can view and create your own or others' workouts built using your own exercises or the exercises of other users.</p>
+      <%= link_to 'View all', '#', class: "link_button link_button_user_page" %>
+      <%= link_to 'Create a new one', '#', class: "link_button link_button_user_page" %>
     </div>
     <div class="col-md-4">
       <h4 class="column_title">Training Plans</h4>
-      <p>Unfortunately, there are currently no training plans to display. However, you can create new           ones.</p>
-      <%= link_to 'View all', '#', class: "link_button" %>
-      <%= link_to 'Create a new one', '#', class: "link_button" %>
+      <p>Here you can view exercises and workouts filtered by category and the equipment used, and if you need to, you can enter new categories and pieces of equipment.</p>
+      <%= link_to 'Equipment', equipment_pieces_path, class: "link_button link_button_user_page" %>
+      <%= link_to 'Categories', categories_path, class: "link_button link_button_user_page" %>
     </div>
   </div>
 </div>
