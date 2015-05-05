@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bcrypt-ruby'
+gem 'sluggable_eva', '= 0.0.0'

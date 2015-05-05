@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :require_user, except: [:index]
+  before_action :require_user
   
   def index
     @categories = Category.all.sort_by{ |x| x.name.downcase }
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   
   def show
     respond_to do |format|
-      @category = Category.find(params[:id])
+      @category = Category.find_by(slug: params[:id])
       format.js
       format.html   
     end

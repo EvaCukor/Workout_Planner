@@ -1,5 +1,5 @@
 class EquipmentPiecesController < ApplicationController
-  before_action :require_user, except: [:index]
+  before_action :require_user
   
   def index
     @equipment_pieces = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
@@ -22,7 +22,7 @@ class EquipmentPiecesController < ApplicationController
   
   def show
     respond_to do |format|
-      @equipment = EquipmentPiece.find(params[:id])
+      @equipment = EquipmentPiece.find_by(slug: params[:id])
       format.js
       format.html   
     end

@@ -1,9 +1,14 @@
 class Exercise < ActiveRecord::Base
+  include Sluggable
+  
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
+  
   has_many :exercise_equipment_pieces
   has_many :equipment_pieces, through: :exercise_equipment_pieces
+  
   has_many :exercise_body_parts
   has_many :body_parts, through: :exercise_body_parts
+  
   has_many :exercise_categories
   has_many :categories, through: :exercise_categories
   
@@ -11,6 +16,8 @@ class Exercise < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   validates :difficulty, presence: true
   validate :has_at_least_one_body_part
+  
+  sluggable_column :name
 
   def has_at_least_one_body_part
     if body_parts.empty?

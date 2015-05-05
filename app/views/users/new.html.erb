@@ -1,6 +1,9 @@
 <% if flash[:errors] %>
   <div class="errors">
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <% flash[:errors].keys.each do |key| %>
         <% flash[:errors][key].each_index do |index| %>
           <%= key.capitalize + ' ' + flash[:errors][key][index].to_s + '.' %><br/>

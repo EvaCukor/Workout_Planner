@@ -1,5 +1,5 @@
 class ExercisesController < ApplicationController
-  before_action :require_user, except: [:index, :show]
+  before_action :require_user
   
   def index
     @exercises = Exercise.all.sort_by{ |x| x.name.downcase }
@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
   
   def show
     respond_to do |format|
-      @exercise = Exercise.find(params[:id])
+      @exercise = Exercise.find_by(slug: params[:id])
       session[:exercise_id] = @exercise.id
       format.js
       format.html
@@ -40,7 +40,7 @@ class ExercisesController < ApplicationController
   end
   
   def edit
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find_by(slug: params[:id])
   end
   
   def update
@@ -57,7 +57,7 @@ class ExercisesController < ApplicationController
   end
   
   def destroy
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find_by(slug: params[:id])
     @exercise.destroy
     session[:exercise_id] = nil
 

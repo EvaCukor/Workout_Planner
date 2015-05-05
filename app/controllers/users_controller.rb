@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:show]
   
   def new
+    if logged_in?
+      redirect_to user_path(current_user.username)
+    end
     @user = User.new
   end
   

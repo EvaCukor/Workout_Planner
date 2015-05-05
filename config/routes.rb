@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'users#new'
+  
   post '/', to: 'users#create'
   
   get '/login', to: 'sessions#new'
