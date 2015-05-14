@@ -12,6 +12,9 @@ class Exercise < ActiveRecord::Base
   has_many :exercise_categories
   has_many :categories, through: :exercise_categories
   
+  has_many :workout_exercises
+  has_many :workouts, through: :workout_exercises
+  
   validates :name, presence: true
   validates_uniqueness_of :name, :case_sensitive => false
   validates :difficulty, presence: true

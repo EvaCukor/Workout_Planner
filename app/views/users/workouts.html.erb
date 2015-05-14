@@ -1,0 +1,43 @@
+<%= render 'shared/title', title: 'Workouts' %>
+
+<% if flash.any? %>
+  <%= render 'shared/flash_messages' %>
+<% end %>
+
+<div class="container"><%= link_to 'Create a new workout', new_workout_path, class: "link_button" %></div>
+
+<div class="container">
+    <div class="row row-same-height">
+      <div class="col-md-3 column_border">
+        <h4 class="column_title">All Users</h4>
+        <%= link_to users_workouts_path, remote: true, class: 'listing' do %>
+          <span class="glyphicon glyphicon-chevron-right"></span><%= ' All Workouts' %>
+        <% end %>
+        <hr/>
+        <%= link_to user_path(current_user), remote: true, class: 'listing' do %>
+          <span class="glyphicon glyphicon-chevron-right"></span><%= ' Me' %>
+        <% end %>
+        <hr/>
+        <% if @users.count == 1 %>
+          <p>There are no other users.</p>
+        <% else %>
+          <% @users.each do |user| %>
+            <% unless user == current_user %>
+              <%= link_to user_path(user), remote: true, class: 'listing' do %>
+                <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + user.username.capitalize %>
+              <% end %><br />
+            <% end %>
+          <% end %>
+          <%= will_paginate @users %>
+        <% end %>
+      </div>
+    <div id="second_column" class="col-md-3">
+      <div id="workouts">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="workout">
+      </div>
+    </div>
+  </div>
+</div 

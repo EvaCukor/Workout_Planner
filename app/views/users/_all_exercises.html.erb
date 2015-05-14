@@ -1,0 +1,9 @@
+<h4 class="column_title">All Exercises</h4>
+
+<% if @exercises.empty? %>
+  <p>There are no exercises to display.</p>
+<% else %>
+  <div id="exercises_list">
+    <%= render 'exercises/exercises_list', object: @exercises %>
+  </div> 
+<% end %>

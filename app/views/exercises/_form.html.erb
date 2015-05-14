@@ -16,13 +16,13 @@
     </div>
     <div class="form-group">
       <%= f.label 'Equipment' %><br/>
-      <%= f.collection_check_boxes :equipment_piece_ids, EquipmentPiece.all, :id, :name do |equipment| %>
+      <%= f.collection_check_boxes :equipment_piece_ids, @equipment, :id, :name do |equipment| %>
         <% equipment.label(class: "checkbox-inline") {equipment.check_box(class: "checkbox") + equipment.text.capitalize} %>
       <% end %>
     </div>
     <div class="form-group">
       <%= f.label 'Categories' %><br/>
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cat| %>
+      <%= f.collection_check_boxes :category_ids, @categories, :id, :name do |cat| %>
         <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
       <% end %>
     </div>

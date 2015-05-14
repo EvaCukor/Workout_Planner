@@ -4,9 +4,9 @@
       <span class="navbar-brand">Workout Planner</span>
     </div>
     <ul class="nav navbar-nav">
-      <%= nav_link 'My Content', user_path(current_user.username) %>
-      <%= nav_link 'Exercises', exercises_path %>    
-      <%= nav_link 'Workouts', '#' %>
+      <%= nav_link 'Home', user_homepage_path(current_user.username) %>
+      <%= nav_link 'Exercises', users_exercises_path %>    
+      <%= nav_link 'Workouts', users_workouts_path %>
       <%= nav_link 'Equipment', equipment_pieces_path %>
       <%= nav_link 'Categories', categories_path %>
     </ul>

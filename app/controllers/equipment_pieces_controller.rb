@@ -2,7 +2,8 @@ class EquipmentPiecesController < ApplicationController
   before_action :require_user
   
   def index
-    @equipment_pieces = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
+    @equipment_pieces = EquipmentPiece.paginate(:page => params[:page], :per_page => 10).order('LOWER(name) ASC')
+    #@equipment_pieces = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
     @equipment = EquipmentPiece.new
   end
   
@@ -10,7 +11,7 @@ class EquipmentPiecesController < ApplicationController
   
   def create
     @equipment = EquipmentPiece.new(equipment_params)
-    @equipment_pieces = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
+    @equipment_pieces = EquipmentPiece.paginate(:page => params[:page], :per_page => 10).order('LOWER(name) ASC')
     
     if @equipment.save      
       flash[:notice] = "Equipment created!"

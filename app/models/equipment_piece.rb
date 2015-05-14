@@ -1,7 +1,7 @@
 class EquipmentPiece < ActiveRecord::Base
   include Sluggable
   
-  belongs_to :user
+  belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :exercise_equipment_pieces
   has_many :exercises, through: :exercise_equipment_pieces
   

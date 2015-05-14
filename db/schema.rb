@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505195032) do
+ActiveRecord::Schema.define(version: 20150511191216) do
 
   create_table "body_parts", force: true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150505195032) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "user_id"
   end
 
   create_table "equipment_pieces", force: true do |t|
@@ -64,6 +65,32 @@ ActiveRecord::Schema.define(version: 20150505195032) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  create_table "workout_categories", force: true do |t|
+    t.integer "workout_id"
+    t.integer "category_id"
+  end
+
+  create_table "workout_exercises", force: true do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+  end
+
+  create_table "workouts", force: true do |t|
+    t.string   "name"
+    t.integer  "interval_min", limit: 255
+    t.integer  "rest_min",     limit: 255
+    t.text     "comment"
+    t.integer  "reps"
+    t.integer  "sets"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rest_sec"
+    t.integer  "interval_sec"
+    t.string   "slug"
   end
 
 end

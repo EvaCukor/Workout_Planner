@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   
-  resources :exercises
+  get '/exercises', to: 'users#exercises', as: 'users_exercises'
+  get '/workouts', to: 'users#workouts', as: 'users_workouts'
+  
+  resources :users, only: [:show]
+  resources :exercises, except: [:index]
+  resources :workouts, except: [:index]
   resources :equipment_pieces, only: [:index, :new, :create, :show]
   resources :categories, only: [:index, :new, :create, :show]
   
-  get "/:username", to: 'users#show', as: 'user'
+  get "/:username", to: 'users#homepage', as: 'user_homepage'
 end

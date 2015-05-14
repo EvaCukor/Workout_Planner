@@ -1,0 +1,47 @@
+<div id="form_container" class="container">
+  <%= form_for @workout do |f| %>
+    <div class="form-group"> 
+      <%= f.label :name, 'Title' %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>  
+    <div class="form-group">
+      <%= f.label 'Exercises' %><br/>
+      <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name do |exercise| %>
+        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text.capitalize} %>
+      <% end %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label 'Categories' %><br/>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cat| %>
+        <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
+      <% end %>
+    </div>
+    <div class="form-group form-inline">
+      <%= f.label :reps, 'The number of repetitions for each exercise:' %>
+      <%= f.number_field :reps, class: "form-control", min: 1 %>
+    </div>
+    <div class="form-group form-inline">
+      <%= f.label :sets, 'The number of sets:' %>
+      <%= f.number_field :sets, class: "form-control", min: 1 %>
+    </div>
+    <div class="form-group form-inline">
+      <label>The duration of intervals: </label>
+      <%= f.number_field :interval_min, class: "form-control", min: 0, max: 59, value: 0, label: false %> minutes
+      <%= f.number_field :interval_sec, class: "form-control", min: 0, max: 59, value: 0, label: false %> seconds
+    </div>
+    <div class="form-group form-inline">
+      <label>The duration of rest periods between intervals: </label>
+      <%= f.number_field :rest_min, class: "form-control", min: 0, max: 59, value: 0, label: false %> minutes
+      <%= f.number_field :rest_sec, class: "form-control", min: 0, max: 59, value: 0, label: false %> seconds
+    </div>  
+    <div class="form-group">
+      <%= f.label :comment, 'Additional comments' %>
+      <%= f.text_area :comment, class: "form-control" %>
+    </div>  
+    <div class="form-group">
+      <%= f.submit 'Cancel', class: 'btn btn-warning' %>
+      <%= f.submit 'Save', class: 'btn confirmation_button' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<h4 class="column_title"><%= @user.username.capitalize + "'s Workouts" %></h4>
+
+<% if @user.workouts.empty? %>
+  <p>This user hasn't yet created any workouts.</p>
+<% else %>
+  <div id="workouts_list">
+    <%= render 'workouts/workouts_list', object: @user.workouts %>
+  </div> 
+<% end %>

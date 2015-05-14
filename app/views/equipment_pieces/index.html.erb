@@ -26,9 +26,10 @@
             <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + equipment.name.capitalize %>
           <% end %><br />
         <% end %>
+        <%= will_paginate @equipment_pieces %>
       <% end %>
     </div>
-    <div id="second_column" class="col-md-4">
+    <div id="second_column" class="col-md-3">
       <div id="exercises">
       </div>
     </div>

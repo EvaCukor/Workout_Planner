@@ -1,0 +1,61 @@
+<h4 class="column_title"><%= @workout.name.capitalize %></h4>
+
+<!-- Modal -->
+<% if logged_in? && (current_user == @workout.creator) %>
+  <p>
+    <%= link_to edit_workout_path(@workout), obj: @workout, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    &nbsp;
+    <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %>
+  </p>
+<% end %>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <%= form_for @workout, method: :delete do |f| %>
+          <%= f.submit("Delete", class: "btn btn-danger") %>
+          <%= f.submit("Cancel", class: "btn btn-default")%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Creator:</dt>
+  <% if logged_in? && (current_user == @workout.creator) %>
+    <dd>Me</dd>
+  <% else %>
+    <dd><%= @workout.creator.username.capitalize %></dd>
+  <% end %>
+  <dt>Exercises:</dt>
+  <dd><%= render 'exercises/exercises_list', object: @workout.exercises %></dd>  
+  <% unless @workout.reps.nil? %>
+    <dt>Repetitions per exercise:</dt>
+    <dd><%= @workout.reps %></dd>
+  <% end %>
+  <% unless @workout.sets.nil? %>
+    <dt>Number of sets:</dt>
+    <dd><%= @workout.sets %></dd>
+  <% end %>
+  <% unless @workout.interval_min == 0 && @workout.interval_sec == 0 %>
+    <dt>Interval duration:</dt>
+    <dd><%= @workout.interval_min.to_s + ' min ' + @workout.interval_sec.to_s + ' sec' %></dd>
+  <% end %>
+  <% unless @workout.rest_min == 0 && @workout.rest_sec == 0 %>
+    <dt>Rest between sets:</dt>
+    <dd><%= @workout.rest_min.to_s + ' min ' + @workout.rest_sec.to_s + ' sec' %></dd>
+  <% end %>
+  <% unless @workout.comment.empty? %>
+    <dt>Additional comment:</dt>
+    <dd><%= @workout.comment.capitalize %></dd>
+  <% end %>
+</dl>

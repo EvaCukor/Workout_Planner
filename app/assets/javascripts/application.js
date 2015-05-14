@@ -20,3 +20,7 @@
 $(document).ready(function() {
   $('div#form_title').addClass('form_title');
 });
+
+// $('#exercise_modal').click(function(){
+//   $('#modal').html("<%= j render(:partial => 'exercise_modal', :locals => {:object => exercise}) %>")
+// });

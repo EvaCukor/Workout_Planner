@@ -1,0 +1,5 @@
+<% object.each do |workout| %>
+    <%= link_to workout_path(workout), remote: true, id: workout.id, class: 'listing' do %>
+      <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + workout.name.capitalize %>
+    <% end %><br />
+<% end %>
