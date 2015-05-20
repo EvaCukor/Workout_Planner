@@ -1,9 +1,0 @@
-<h4 class="column_title"><%= @category.name.capitalize %></h4>
-
-<% if @category.exercises.empty? %>
-<p>There are no exercises in the category '<%= @category.name.downcase %>'.</p>
-<% else %>
-  <div id="exercises_list">
-    <%= render 'exercises/exercises_list', object: @category.exercises %>
-  </div> 
-<% end %>

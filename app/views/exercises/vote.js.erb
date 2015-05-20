@@ -1,0 +1,9 @@
+<% if @vote.valid? %>
+  <% if @exercise.total_votes == 1 %>
+    $(".exercise_<%= @exercise.id %>_votes").html("(<%= @exercise.total_votes %> like)")
+  <% else %>
+    $(".exercise_<%= @exercise.id %>_votes").html("(<%= @exercise.total_votes %> likes)")
+  <% end %>
+<% else %>
+  alert("You can like or dislike an exercise only once.");
+<% end %>

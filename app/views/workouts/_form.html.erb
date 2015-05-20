@@ -6,14 +6,14 @@
     </div>  
     <div class="form-group">
       <%= f.label 'Exercises' %><br/>
-      <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name do |exercise| %>
+      <%= f.collection_check_boxes :exercise_ids, Exercise.all.sort_by{ |x| x.name.downcase }, :id, :name do |exercise| %>
         <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text.capitalize} %>
       <% end %>
     </div>
   
     <div class="form-group">
       <%= f.label 'Categories' %><br/>
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cat| %>
+      <%= f.collection_check_boxes :category_ids, Category.all.sort_by{ |x| x.name.downcase }, :id, :name do |cat| %>
         <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
       <% end %>
     </div>

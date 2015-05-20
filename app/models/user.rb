@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :workouts
   has_many :categories
   has_many :equipment_pieces
+  has_many :votes
   
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, on: :create, length: {minimum: 5}

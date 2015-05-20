@@ -15,6 +15,8 @@ class Exercise < ActiveRecord::Base
   has_many :workout_exercises
   has_many :workouts, through: :workout_exercises
   
+  has_many :votes, as: :voteable
+  
   validates :name, presence: true
   validates_uniqueness_of :name, :case_sensitive => false
   validates :difficulty, presence: true
@@ -26,5 +28,9 @@ class Exercise < ActiveRecord::Base
     if body_parts.empty?
       errors.add(:exercises, "need to have a defined targeted body part")
     end
+  end
+  
+  def total_votes
+    self.votes.where(vote: true).size - self.votes.where(vote: false).size
   end
 end

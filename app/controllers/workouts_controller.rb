@@ -3,8 +3,8 @@ class WorkoutsController < ApplicationController
   
   def new
     @workout = Workout.new    
-    @categories = Category.all.sort_by{ |x| x.name.downcase }
-    @exercises = Exercise.all.sort_by{ |x| x.name.downcase }
+    #@categories = Category.all.sort_by{ |x| x.name.downcase }
+    #@exercises = Exercise.all.sort_by{ |x| x.name.downcase }
   end
   
   def create
@@ -57,9 +57,23 @@ class WorkoutsController < ApplicationController
     else
       respond_to do |format|
         @workout.destroy
-        format.js { @workouts = Workout.all.sort_by{ |x| x.name.downcase } }
+        format.js { @workouts = Workout.all.sort_by{ |x| x.total_votes }.reverse }
         format.html { redirect_to session[:prev_url] }        
       end
+    end
+  end
+  
+  def vote
+    @workout = Workout.find_by(slug: params[:id])
+    @vote = Vote.create(voteable: @workout, creator: current_user, vote: params[:vote])
+    respond_to do |format|
+      format.html do
+        unless @vote.valid?
+          flash[:error] = 'You can like or dislike an exercise only once.'
+        end
+        redirect_to session[:prev_url]
+      end
+      format.js
     end
   end
   

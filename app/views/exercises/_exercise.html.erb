@@ -1,6 +1,12 @@
-<h4 class="column_title"><%= @exercise.name.capitalize %></h4>
+<h4 class="column_title">
+  <%= @exercise.name.capitalize %>
+  <% if @exercise.total_votes == 1 %>
+    <small class="exercise_<%= @exercise.id %>_votes">(<%= @exercise.total_votes %> like)</small>
+  <% else %>
+    <small class="exercise_<%= @exercise.id %>_votes">(<%= @exercise.total_votes %> likes)</small>
+  <% end %>
+</h4>
 
-<!-- Modal -->
 <% if logged_in? && (current_user == @exercise.creator) %>
   <p>
     <%= link_to edit_exercise_path(@exercise), obj: @exercise, class: 'custom_icon' do %>
@@ -9,6 +15,16 @@
     &nbsp;
     <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
       <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %>
+  </p>
+<% elsif logged_in? && (current_user != @exercise.creator)  %>
+  <p>
+    <%= link_to vote_exercise_path(@exercise, vote: true), method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like
+    <% end %>
+    &nbsp;
+    <%= link_to vote_exercise_path(@exercise, vote: false), method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike
     <% end %>
   </p>
 <% end %>

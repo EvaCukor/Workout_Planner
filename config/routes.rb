@@ -11,8 +11,16 @@ Rails.application.routes.draw do
   get '/workouts', to: 'users#workouts', as: 'users_workouts'
   
   resources :users, only: [:show]
-  resources :exercises, except: [:index]
-  resources :workouts, except: [:index]
+  resources :exercises, except: [:index] do
+    member do
+      post 'vote'
+    end
+  end
+  resources :workouts, except: [:index] do
+    member do
+      post 'vote'
+    end
+  end
   resources :equipment_pieces, only: [:index, :new, :create, :show]
   resources :categories, only: [:index, :new, :create, :show]
   

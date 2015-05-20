@@ -1,5 +1,12 @@
 <% object.each do |workout| %>
-    <%= link_to workout_path(workout), remote: true, id: workout.id, class: 'listing' do %>
-      <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + workout.name.capitalize %>
-    <% end %><br />
+  <%= link_to workout_path(workout), remote: true, id: workout.id, class: 'listing' do %>
+    <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + workout.name.capitalize %>
+    &nbsp;
+    <% if workout.total_votes == 1 %>
+      <small>(<%= workout.total_votes %> like)</small>
+    <% else %>
+      <small>(<%= workout.total_votes %> likes)</small>
+    <% end %>
+  <% end %>
+  <br />
 <% end %>

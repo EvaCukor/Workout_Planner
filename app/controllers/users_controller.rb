@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @users = User.paginate(:page => params[:page], :per_page => 5).order('LOWER(username) ASC')
     
     respond_to do |format|
-      format.js { @exercises = Exercise.all.sort_by{ |x| x.name.downcase } }
+      format.js { @exercises = Exercise.all.sort_by{ |x| x.total_votes }.reverse }
       format.html  
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @users = User.paginate(:page => params[:page], :per_page => 5).order('LOWER(username) ASC')
     
     respond_to do |format|
-      format.js { @workouts = Workout.all.sort_by{ |x| x.name.downcase } }
+      format.js { @workouts = Workout.all.sort_by{ |x| x.total_votes }.reverse }
       format.html  
     end
   end

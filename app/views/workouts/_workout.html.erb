@@ -1,6 +1,12 @@
-<h4 class="column_title"><%= @workout.name.capitalize %></h4>
+<h4 class="column_title">
+  <%= @workout.name.capitalize %>
+  <% if @workout.total_votes == 1 %>
+    <small>(<%= @workout.total_votes %> like)</small>
+  <% else %>
+    <small>(<%= @workout.total_votes %> likes)</small>
+  <% end %>
+</h4>
 
-<!-- Modal -->
 <% if logged_in? && (current_user == @workout.creator) %>
   <p>
     <%= link_to edit_workout_path(@workout), obj: @workout, class: 'custom_icon' do %>
@@ -9,6 +15,16 @@
     &nbsp;
     <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
       <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %>
+  </p>
+<% elsif logged_in? && (current_user != @workout.creator)  %>
+  <p>
+    <%= link_to vote_workout_path(@workout, vote: true), method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like
+    <% end %>
+    &nbsp;
+    <%= link_to vote_workout_path(@workout, vote: false), method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike
     <% end %>
   </p>
 <% end %>
@@ -37,7 +53,22 @@
     <dd><%= @workout.creator.username.capitalize %></dd>
   <% end %>
   <dt>Exercises:</dt>
-  <dd><%= render 'exercises/exercises_list', object: @workout.exercises %></dd>  
+  <dd><%= render 'exercises/exercises_list', object: @workout.exercises %></dd>
+  
+<!--   <% @workout.exercises.each do |exercise| %>
+    <dd>
+      <%= link_to '#', 'data-toggle' => 'popover', title: exercise.name.capitalize, 'data-html' => 'true', 'data-content' => "#{render 'exercises/just_exercise', obj: exercise}", class: 'listing' do %>
+        <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + exercise.name.capitalize %>
+      <% end %>
+    </dd>
+  <% end %> -->
+  
+  <% unless @workout.categories.first.nil? %>
+    <dt>Category:</dt>
+    <% @workout.categories.each do |category| %>
+      <dd><%= category.name.capitalize %></dd>
+    <% end %>
+  <% end %>
   <% unless @workout.reps.nil? %>
     <dt>Repetitions per exercise:</dt>
     <dd><%= @workout.reps %></dd>

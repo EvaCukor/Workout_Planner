@@ -9,10 +9,16 @@ class Workout < ActiveRecord::Base
   has_many :workout_categories
   has_many :categories, through: :workout_categories
   
+  has_many :votes, as: :voteable
+  
   validates :name, presence: true
   validates :exercises, presence: true #validates_existence_of
   
   validates_uniqueness_of :name, :case_sensitive => false
   
   sluggable_column :name
+  
+  def total_votes
+    self.votes.where(vote: true).size - self.votes.where(vote: false).size
+  end
 end
