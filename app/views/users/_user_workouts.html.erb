@@ -1,9 +1,3 @@
-<h4 class="column_title"><%= @user.username.capitalize + "'s Workouts" %></h4>
+<%= render 'shared/column_title', column_title: @user.username.titleize + "'s Workouts" %>
 
-<% if @user.workouts.empty? %>
-  <p>This user hasn't yet created any workouts.</p>
-<% else %>
-  <div id="workouts_list">
-    <%= render 'workouts/workouts_list', object: @user.workouts %>
-  </div> 
-<% end %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @user.workouts, css_id: 'workouts_list', destination: 'workouts/workouts_list' %>

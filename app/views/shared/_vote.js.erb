@@ -1,0 +1,9 @@
+<% if @vote.valid? %>
+  <% if object.total_votes == 1 %>
+    $(".<%= object_type %>_<%= object.id %>_votes").html("(<%= object.total_votes %> vote)")
+  <% else %>
+    $(".<%= object_type %>_<%= object.id %>_votes").html("(<%= object.total_votes %> votes)")
+  <% end %>
+<% else %>
+  $("#voting_warning").html("<%= j (render 'shared/voting_warning') %>")
+<% end %>

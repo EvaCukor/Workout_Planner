@@ -1,5 +1,5 @@
 <h1 id="greeting">
-  Hi, <%= current_user.username.capitalize %>!<br/>
+  Hi, <%= current_user.username.titleize %>!<br/>
 </h1>
 
 <div class="container">
@@ -17,7 +17,7 @@
       <%= link_to 'Create a new one', new_workout_path, class: "link_button link_button_user_page" %>
     </div>
     <div class="col-md-4">
-      <h4 class="column_title">Training Plans</h4>
+      <h4 class="column_title">Equipment & Categories</h4>
       <p>Here you can view exercises and workouts filtered by category and the equipment used, and if you need to, you can enter new categories and pieces of equipment.</p>
       <%= link_to 'Equipment', equipment_pieces_path, class: "link_button link_button_user_page" %>
       <%= link_to 'Categories', categories_path, class: "link_button link_button_user_page" %>

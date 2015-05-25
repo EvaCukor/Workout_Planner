@@ -4,14 +4,16 @@
   <%= render 'shared/flash_messages' %>
 <% end %>
 
-<div class="container"><%= link_to 'Create a new workout', new_workout_path, class: "link_button" %></div>
+<div class="container">
+  <%= link_to 'Create a new workout', new_workout_path, class: "link_button" %>
+</div>
 
 <div class="container">
     <div class="row row-same-height">
       <div class="col-md-3 column_border">
-        <h4 class="column_title">All Users</h4>
+        <%= render 'shared/column_title', column_title: 'Workouts by Users' %>
         <%= link_to users_workouts_path, remote: true, class: 'listing' do %>
-          <span class="glyphicon glyphicon-chevron-right"></span><%= ' All Workouts' %>
+          <span class="glyphicon glyphicon-chevron-right"></span><%= ' All workouts' %>
         <% end %>
         <hr/>
         <%= link_to user_path(current_user), remote: true, class: 'listing' do %>
@@ -21,13 +23,7 @@
         <% if @users.count == 1 %>
           <p>There are no other users.</p>
         <% else %>
-          <% @users.each do |user| %>
-            <% unless user == current_user %>
-              <%= link_to user_path(user), remote: true, class: 'listing' do %>
-                <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + user.username.capitalize %>
-              <% end %><br />
-            <% end %>
-          <% end %>
+          <%= render 'users_list' %>
           <%= will_paginate @users %>
         <% end %>
       </div>

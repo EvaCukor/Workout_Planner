@@ -1,0 +1,5 @@
+<% if obj.total_votes == 1 %>
+  <small class="<%= obj_type %>_<%= obj.id %>_votes">(<%= obj.total_votes %> vote)</small>
+<% else %>
+  <small class="<%= obj_type %>_<%= obj.id %>_votes">(<%= obj.total_votes %> votes)</small>
+<% end %>

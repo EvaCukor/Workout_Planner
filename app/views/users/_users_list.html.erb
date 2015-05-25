@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <% unless user == current_user %>
+    <%= link_to user_path(user), remote: true, class: 'listing' do %>
+      <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + user.username.titleize %>
+    <% end %><br />
+  <% end %>
+<% end %>

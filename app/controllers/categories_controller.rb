@@ -1,9 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :require_user
+  before_action :set_paginated_categories, only: [:index, :create]
     
   def index
-    #@categories = Category.all.sort_by{ |x| x.name.downcase }
-    @categories = Category.paginate(:page => params[:page], :per_page => 10).order('LOWER(name) ASC')
     @category = Category.new
   end
   
@@ -11,7 +10,6 @@ class CategoriesController < ApplicationController
   
   def create
     @category = Category.new(categories_params)
-    @categories = Category.paginate(:page => params[:page], :per_page => 10).order('LOWER(name) ASC')
     
     if @category.save
       flash[:notice] = "Category created!"
@@ -24,8 +22,6 @@ class CategoriesController < ApplicationController
   def show
     respond_to do |format|
       @category = Category.find_by(slug: params[:id])
-      #@exercises = Exercise.find_by(@category.id)
-      #@exercises = Exercise.paginate(:page => params[:page], :per_page => 2).order('LOWER(name) ASC')
       format.js
       format.html   
     end
@@ -35,5 +31,9 @@ class CategoriesController < ApplicationController
   
   def categories_params
     params.require(:category).permit!
+  end
+  
+  def set_paginated_categories
+    @categories = Category.paginate(:page => params[:page], :per_page => 10).order('LOWER(name) ASC')
   end
 end

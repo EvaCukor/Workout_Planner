@@ -1,0 +1,7 @@
+<%= form_for object, html: {class: "form-inline", role: "form"} do |f| %>
+  <div class="form-group"> 
+    <%= f.label :name, 'New item:' %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.submit 'Save', class: 'btn confirmation_button' %>
+  </div>
+<% end %>

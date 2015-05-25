@@ -1,19 +1,29 @@
 <div id="form_container" class="container">
   <%= form_for @workout do |f| %>
     <div class="form-group"> 
-      <%= f.label :name, 'Title' %>
+      <%= f.label :name, 'Name*' %>
       <%= f.text_field :name, class: "form-control" %>
     </div>  
     <div class="form-group">
-      <%= f.label 'Exercises' %><br/>
-      <%= f.collection_check_boxes :exercise_ids, Exercise.all.sort_by{ |x| x.name.downcase }, :id, :name do |exercise| %>
-        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text.capitalize} %>
+      <%= f.label 'Exercises*' %><br/>
+      <%= f.collection_check_boxes :exercise_ids, @exercises, :id, :name do |exercise| %>
+        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text.titleize} %>
       <% end %>
+      
+<!--       <% @exercises.each do |exercise| %>      
+        <small>(<%= exercise.total_votes == 1 ? exercise.total_votes.to_s + ' vote' : exercise.total_votes.to_s + ' votes' %>)</small>
+        <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => "#viewModal_#{exercise.id}", class: 'listing' do %>
+          <span class="glyphicon glyphicon-search"></span>&nbsp;
+        <% end %>
+        <%= render 'exercise_modal', exercise: exercise %>
+      <% end %> -->
+      
     </div>
+  
   
     <div class="form-group">
       <%= f.label 'Categories' %><br/>
-      <%= f.collection_check_boxes :category_ids, Category.all.sort_by{ |x| x.name.downcase }, :id, :name do |cat| %>
+      <%= f.collection_check_boxes :category_ids, @categories, :id, :name do |cat| %>
         <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
       <% end %>
     </div>

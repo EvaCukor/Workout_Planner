@@ -1,19 +1,12 @@
 class ExercisesController < ApplicationController
   before_action :require_user
-  
-#   def index
-#     @exercises = Exercise.all.sort_by{ |x| x.name.downcase }
-#     #@exercises = Exercise.paginate(:page => params[:page], :per_page => 2).order('LOWER(name) ASC')
-#     respond_to do |format|
-#       format.js
-#       #format.html   
-#     end
-#   end
+  before_action :set_exercise, except: [:new, :create]
+  before_action :checkboxes_categories, only: [:new, :create, :edit, :update]
+  before_action :checkboxes_equipment, only: [:new, :create, :edit, :update]
+  before_action :checkboxes_body_parts, only: [:new, :create, :edit, :update]
   
   def new
-    @exercise = Exercise.new    
-    @categories = Category.all.sort_by{ |x| x.name.downcase }
-    @equipment = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
+    @exercise = Exercise.new
   end
   
   def create
@@ -23,7 +16,6 @@ class ExercisesController < ApplicationController
     if params[:commit] == "Cancel"
       redirect_to exercises_path
     elsif @exercise.save
-      #session[:exercise_id] = @exercise.id
       flash[:notice] = "Exercise created!"
       redirect_to exercises_path
     else
@@ -33,8 +25,6 @@ class ExercisesController < ApplicationController
   
   def show
     respond_to do |format|
-      @exercise = Exercise.find_by(slug: params[:id])
-      #session[:exercise_id] = @exercise.id
       session[:prev_url] = request.referer
       format.js
       format.html   
@@ -42,15 +32,10 @@ class ExercisesController < ApplicationController
   end
   
   def edit
-    @exercise = Exercise.find_by(slug: params[:id])
-    @categories = Category.all.sort_by{ |x| x.name.downcase }
-    @equipment = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
     session[:prev_url] = request.referer
   end
   
   def update
-    @exercise = Exercise.find_by(slug: params[:id])
-    #session[:exercise_id] = @exercise.id
     if params[:commit] == "Cancel"
       redirect_to session[:prev_url]
     elsif @exercise.update_attributes(exercise_params)
@@ -62,22 +47,11 @@ class ExercisesController < ApplicationController
   end
   
   def destroy
-    @exercise = Exercise.find_by(slug: params[:id])  
-    
-    if params[:commit] == "Cancel"
-      redirect_to session[:prev_url]
-    else
-      respond_to do |format|
-        @exercise.destroy
-        #session[:exercise_id] = nil
-        format.js { @exercises = Exercise.all.sort_by{ |x| x.total_votes }.reverse }
-        format.html { redirect_to session[:prev_url] }        
-      end
-    end
+    @exercise.destroy
+    redirect_to session[:prev_url]
   end
   
   def vote
-    @exercise = Exercise.find_by(slug: params[:id])
     @vote = Vote.create(voteable: @exercise, creator: current_user, vote: params[:vote])
     respond_to do |format|
       format.html do
@@ -94,5 +68,9 @@ class ExercisesController < ApplicationController
   
   def exercise_params
     params.require(:exercise).permit!
+  end
+  
+  def set_exercise
+    @exercise = Exercise.find_by(slug: params[:id])
   end
 end

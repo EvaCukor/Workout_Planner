@@ -1,9 +1,3 @@
-<h4 class="column_title"><%= @equipment.name.capitalize %></h4>
+<%= render 'shared/column_title', column_title: @equipment.name.capitalize %>
 
-<% if @equipment.exercises.empty? %>
-<p>There are no exercises requiring the following equipment: '<%= @equipment.name.downcase %>'.</p>
-<% else %>
-  <div id="exercises_list">
-    <%= render 'exercises/exercises_list', object: @equipment.exercises %>          
-  </div> 
-<% end %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @equipment.exercises, css_id: 'exercises_list', destination: 'exercises/exercises_list' %>

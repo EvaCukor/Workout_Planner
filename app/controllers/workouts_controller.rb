@@ -1,10 +1,11 @@
 class WorkoutsController < ApplicationController
   before_action :require_user
+  before_action :set_workout, except: [:new, :create]
+  before_action :checkboxes_categories, only: [:new, :create, :edit, :update]
+  before_action :checkboxes_exercises, only: [:new, :create, :edit, :update]
   
   def new
-    @workout = Workout.new    
-    #@categories = Category.all.sort_by{ |x| x.name.downcase }
-    #@exercises = Exercise.all.sort_by{ |x| x.name.downcase }
+    @workout = Workout.new
   end
   
   def create
@@ -23,22 +24,17 @@ class WorkoutsController < ApplicationController
   
   def show
     respond_to do |format|
-      @workout = Workout.find_by(slug: params[:id])
       session[:prev_url] = request.referer
       format.js
-      #format.html   
+      format.html   
     end
   end
   
   def edit
-    @workout = Workout.find_by(slug: params[:id])
-    @categories = Category.all.sort_by{ |x| x.name.downcase }
-    @exercises = Exercise.all.sort_by{ |x| x.name.downcase }
     session[:prev_url] = request.referer
   end
   
   def update
-    @workout = Workout.find_by(slug: params[:id])
     if params[:commit] == "Cancel"
       redirect_to session[:prev_url]
     elsif @workout.update_attributes(workout_params)
@@ -50,21 +46,11 @@ class WorkoutsController < ApplicationController
   end
   
   def destroy
-    @workout = Workout.find_by(slug: params[:id])  
-    
-    if params[:commit] == "Cancel"
-      redirect_to session[:prev_url]
-    else
-      respond_to do |format|
-        @workout.destroy
-        format.js { @workouts = Workout.all.sort_by{ |x| x.total_votes }.reverse }
-        format.html { redirect_to session[:prev_url] }        
-      end
-    end
+    @workout.destroy
+    redirect_to session[:prev_url]
   end
   
   def vote
-    @workout = Workout.find_by(slug: params[:id])
     @vote = Vote.create(voteable: @workout, creator: current_user, vote: params[:vote])
     respond_to do |format|
       format.html do
@@ -81,5 +67,9 @@ class WorkoutsController < ApplicationController
   
   def workout_params
     params.require(:workout).permit!
+  end
+  
+  def set_workout
+    @workout = Workout.find_by(slug: params[:id])
   end
 end

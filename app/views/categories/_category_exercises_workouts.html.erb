@@ -1,19 +1,7 @@
-<h4 class="column_title"><%= @category.name.capitalize %></h4>
+<%= render 'shared/column_title', column_title: @category.name.capitalize %>
 
 <h5 class="column_title">Exercises</h5>
-<% if @category.exercises.empty? %>
-  <p>There are no exercises in the category '<%= @category.name.downcase %>'.</p>
-<% else %>
-  <div id="exercises_list">
-    <%= render 'exercises/exercises_list', object: @category.exercises %>
-  </div> 
-<% end %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @category.exercises, css_id: 'exercises_list', destination: 'exercises/exercises_list' %>
 <br/>
 <h5 class="column_title">Workouts</h5>
-<% if @category.workouts.empty? %>
-  <p>There are no workouts in the category '<%= @category.name.downcase %>'.</p>
-<% else %>
-  <div id="workouts_list">
-    <%= render 'workouts/workouts_list', object: @category.workouts %>
-  </div> 
-<% end %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @category.workouts, css_id: 'workouts_list', destination: 'workouts/workouts_list' %>

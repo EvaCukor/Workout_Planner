@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user, only: [:homepage, :exercises, :show]
+  before_action :set_paginated_users, only: [:exercises, :workouts]
   
   def new
     if logged_in?
@@ -21,21 +22,17 @@ class UsersController < ApplicationController
   end
   
   def homepage
-    @user = User.find_by username: params[:username]
+    @user = User.find_by(username: params[:username])
   end
   
-  def exercises
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('LOWER(username) ASC')
-    
+  def exercises    
     respond_to do |format|
       format.js { @exercises = Exercise.all.sort_by{ |x| x.total_votes }.reverse }
       format.html  
     end
   end
   
-  def workouts
-    @users = User.paginate(:page => params[:page], :per_page => 5).order('LOWER(username) ASC')
-    
+  def workouts    
     respond_to do |format|
       format.js { @workouts = Workout.all.sort_by{ |x| x.total_votes }.reverse }
       format.html  
@@ -55,5 +52,9 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit!
+  end
+  
+  def set_paginated_users
+    @users = User.paginate(:page => params[:page], :per_page => 5).order('LOWER(username) ASC')
   end
 end

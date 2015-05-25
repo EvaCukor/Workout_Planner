@@ -1,77 +1,9 @@
-<h4 class="column_title">
-  <%= @exercise.name.capitalize %>
-  <% if @exercise.total_votes == 1 %>
-    <small class="exercise_<%= @exercise.id %>_votes">(<%= @exercise.total_votes %> like)</small>
-  <% else %>
-    <small class="exercise_<%= @exercise.id %>_votes">(<%= @exercise.total_votes %> likes)</small>
-  <% end %>
-</h4>
+<%= render 'shared/column_title_with_votes', column_title: @exercise.name.titleize, object: @exercise, object_type: 'exercise' %>
 
-<% if logged_in? && (current_user == @exercise.creator) %>
-  <p>
-    <%= link_to edit_exercise_path(@exercise), obj: @exercise, class: 'custom_icon' do %>
-      <span class="glyphicon glyphicon-pencil"></span> Edit
-    <% end %>
-    &nbsp;
-    <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
-      <span class="glyphicon glyphicon-trash"></span> Delete
-    <% end %>
-  </p>
-<% elsif logged_in? && (current_user != @exercise.creator)  %>
-  <p>
-    <%= link_to vote_exercise_path(@exercise, vote: true), method: 'post', remote: true, class: 'custom_icon' do %>
-      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like
-    <% end %>
-    &nbsp;
-    <%= link_to vote_exercise_path(@exercise, vote: false), method: 'post', remote: true, class: 'custom_icon' do %>
-      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike
-    <% end %>
-  </p>
-<% end %>
+<span id="voting_warning"></span>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-body">
-        Are you sure you want to delete this item?
-      </div>
-      <div class="modal-footer">
-        <%= form_for @exercise, method: :delete do |f| %>
-          <%= f.submit("Delete", class: "btn btn-danger") %>
-          <%= f.submit("Cancel", class: "btn btn-default")%>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'shared/user_dependent_actions', object: @exercise, edit_url: edit_exercise_path(@exercise), vote_true_url: vote_exercise_path(@exercise, vote: true), vote_false_url: vote_exercise_path(@exercise, vote: false) %>
 
-<dl class="dl-horizontal">
-  <dt>Creator:</dt>
-  <% if logged_in? && (current_user == @exercise.creator) %>
-    <dd>Me</dd>
-  <% else %>
-    <dd><%= @exercise.creator.username.capitalize %></dd>
-  <% end %>
-  <% unless @exercise.description.empty? %>
-    <dt>Description:</dt>
-    <dd><%= @exercise.description.capitalize %></dd>
-  <% end %>
-  <% unless @exercise.equipment_pieces.first.nil? %>
-    <dt>Necessary equipment:</dt>
-    <% @exercise.equipment_pieces.each do |equipment| %>
-      <dd><%= equipment.name.capitalize %></dd>
-    <% end %>
-  <% end %>
-  <dt>Targeted body part:</dt>
-  <% @exercise.body_parts.each do |body_part| %>
-    <dd><%= body_part.name.capitalize %></dd>
-  <% end %>
-  <dt>Difficulty:</dt>
-  <dd><%= @exercise.difficulty %></dd>
-  <% unless @exercise.categories.first.nil? %>
-    <dt>Category:</dt>
-    <% @exercise.categories.each do |category| %>
-      <dd><%= category.name.capitalize %></dd>
-    <% end %>
-  <% end %>
-</dl>
+<%= render 'shared/delete_modal', object: @exercise %>
+
+<%= render 'exercise_attributes', object: @exercise %>

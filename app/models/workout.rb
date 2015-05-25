@@ -12,7 +12,7 @@ class Workout < ActiveRecord::Base
   has_many :votes, as: :voteable
   
   validates :name, presence: true
-  validates :exercises, presence: true #validates_existence_of
+  validates :exercises, presence: true
   
   validates_uniqueness_of :name, :case_sensitive => false
   

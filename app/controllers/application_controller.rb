@@ -21,8 +21,19 @@ class ApplicationController < ActionController::Base
     end
   end
   
-#   def wrong_path
-#     flash[:error] = "There was an error."
-#     redirect_to root_path
-#   end
+  def checkboxes_categories
+    @categories = Category.all.sort_by{ |x| x.name.downcase }
+  end
+  
+  def checkboxes_equipment
+    @equipment = EquipmentPiece.all.sort_by{ |x| x.name.downcase }
+  end
+  
+  def checkboxes_body_parts
+    @body_parts = BodyPart.all.sort_by{ |x| x.name.downcase }
+  end
+  
+  def checkboxes_exercises
+    @exercises = Exercise.all.sort_by{ |x| x.name.downcase }
+  end
 end

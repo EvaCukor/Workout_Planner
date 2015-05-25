@@ -1,0 +1,21 @@
+<% if logged_in? && (current_user == object.creator) %>
+  <p>
+    <%= link_to edit_url, obj: object, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    &nbsp;
+    <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => '#deleteModal', class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    <% end %>
+  </p>
+<% elsif logged_in? && (current_user != object.creator)  %>
+  <p>
+    <%= link_to vote_true_url, method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like
+    <% end %>
+    &nbsp;
+    <%= link_to vote_false_url, method: 'post', remote: true, class: 'custom_icon' do %>
+      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Dislike
+    <% end %>
+  </p>
+<% end %>

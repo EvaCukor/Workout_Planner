@@ -1,10 +1,12 @@
-<% if flash.keys.any? %>
-  <%= render 'shared/flash_messages' %>
-<% else %>
-  <p class="homepage_desc homepage_text">
-    Welcome! Here you can create completely customized workouts and share them with other users. If you are an existing user of this website, please log in below. Otherwise, follow the link to the registration page. 
-  </p>
-<% end %>
+<span id="login_text">
+  <% if flash.keys.any? %>
+    <%= render 'shared/flash_messages' %>
+  <% else %>
+    <p id="login_text" class="homepage_desc homepage_text">
+      Welcome! Here you can create completely customized workouts and share them with other users. If you are an existing user of this website, please log in below. Otherwise, follow the link to the registration page. 
+    </p>
+  <% end %>
+</span>
 <div id="registration_container" class="container">
   <%= link_to 'Register', root_path, class: "link" %><br/>
   <%= form_tag '/login', method: 'post' do %>

@@ -1,3 +1,1 @@
-$('#second_column').addClass('column_border');
-$('#workouts').html("<%= j (render 'all_workouts') %>");
-$('#workout').empty();
+<%= render 'shared/dynamic_generator', object: 'workout', destination: 'all_workouts' %>

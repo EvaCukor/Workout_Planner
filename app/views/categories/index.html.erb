@@ -7,17 +7,11 @@
 <%= render 'shared/errors', obj: @category %>
 
 <div class="container">
-  <%= form_for @category, html: {class: "form-inline", role: "form"} do |f| %>
-    <div class="form-group"> 
-      <%= f.label :name, 'New category:' %>
-      <%= f.text_field :name, class: "form-control" %>
-      <%= f.submit 'Save', class: 'btn confirmation_button' %>
-    </div>
-  <% end %>
+  <%= render 'shared/small_form', object: @category %>
   <br/>
   <div class="row row-same-height">
     <div class="col-md-3 column_border">
-      <h4 class="column_title">All Categories</h4>
+      <%= render 'shared/column_title', column_title: 'All Categories' %>
       <% if @categories.nil? %>
         <p>There are currently no categories to display.<p>
       <% else %>

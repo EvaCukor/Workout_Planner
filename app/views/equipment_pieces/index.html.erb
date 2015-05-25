@@ -7,17 +7,11 @@
 <%= render 'shared/errors', obj: @equipment %>
 
 <div class="container">
-  <%= form_for @equipment, html: {class: "form-inline", role: "form"} do |f| %>
-    <div class="form-group"> 
-      <%= f.label :name, 'New equipment:' %>
-      <%= f.text_field :name, class: "form-control" %>
-      <%= f.submit 'Save', class: 'btn confirmation_button' %>
-    </div>
-  <% end %>
+  <%= render 'shared/small_form', object: @equipment %>
   <br/>
   <div class="row row-same-height">
     <div class="col-md-3 column_border">
-      <h4 class="column_title">All Equipment</h4>
+      <%= render 'shared/column_title', column_title: 'All Equipment' %>
       <% if @equipment_pieces.nil? %>
         <p>There is currently no equipment to display.<p>
       <% else %>
