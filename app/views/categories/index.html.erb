@@ -12,12 +12,12 @@
   <div class="row row-same-height">
     <div class="col-md-3 column_border">
       <%= render 'shared/column_title', column_title: 'All Categories' %>
-      <% if @categories.nil? %>
+      <% if @categories.empty? %>
         <p>There are currently no categories to display.<p>
       <% else %>
         <% @categories.each do |category| %>   
           <%= link_to category_path(category), remote: true, id: category.id, class: 'listing' do %>
-            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + category.name.capitalize %>
+            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + category.name %>
           <% end %><br />
         <% end %>
         <%= will_paginate @categories %>

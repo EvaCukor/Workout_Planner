@@ -17,7 +17,7 @@
       <% else %>
         <% @equipment_pieces.each do |equipment| %>
           <%= link_to equipment_piece_path(equipment), remote: true, id: equipment.id, class: 'listing' do %>
-            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + equipment.name.capitalize %>
+            <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + equipment.name %>
           <% end %><br />
         <% end %>
         <%= will_paginate @equipment_pieces %>

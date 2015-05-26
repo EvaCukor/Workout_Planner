@@ -3,28 +3,28 @@
   <% if logged_in? && (current_user == object.creator) %>
     <dd>Me</dd>
   <% else %>
-    <dd><%= object.creator.username.titleize %></dd>
+    <dd><%= object.creator.username %></dd>
   <% end %>
   <% unless object.description.empty? %>
     <dt>Description:</dt>
-    <dd><%= object.description.capitalize %></dd>
+    <dd><%= object.description %></dd>
   <% end %>
   <% unless object.equipment_pieces.first.nil? %>
     <dt>Necessary equipment:</dt>
     <% object.equipment_pieces.each do |equipment| %>
-      <dd><%= equipment.name.capitalize %></dd>
+      <dd><%= equipment.name %></dd>
     <% end %>
   <% end %>
   <dt>Targeted body part:</dt>
   <% object.body_parts.each do |body_part| %>
-    <dd><%= body_part.name.capitalize %></dd>
+    <dd><%= body_part.name %></dd>
   <% end %>
   <dt>Difficulty:</dt>
   <dd><%= object.difficulty %></dd>
   <% unless object.categories.first.nil? %>
     <dt>Category:</dt>
     <% object.categories.each do |category| %>
-      <dd><%= category.name.capitalize %></dd>
+      <dd><%= category.name %></dd>
     <% end %>
   <% end %>
 </dl>

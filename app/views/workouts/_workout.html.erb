@@ -1,4 +1,4 @@
-<%= render 'shared/column_title_with_votes', column_title: @workout.name.titleize, object: @workout, object_type: 'workout' %>
+<%= render 'shared/column_title_with_votes', column_title: @workout.name, object: @workout, object_type: 'workout' %>
 
 <span id="voting_warning"></span>
 
@@ -11,14 +11,14 @@
   <% if logged_in? && (current_user == @workout.creator) %>
     <dd>Me</dd>
   <% else %>
-    <dd><%= @workout.creator.username.titleize %></dd>
+    <dd><%= @workout.creator.username %></dd>
   <% end %>
   
   <dt>Exercises:</dt>  
   <% @workout.exercises.each do |exercise| %>
     <dd>
       <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => "#viewModal_#{exercise.id}", class: 'listing' do %>
-        <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + exercise.name.titleize %>
+        <span class="glyphicon glyphicon-chevron-right"></span><%= ' ' + exercise.name %>
         &nbsp;
         <small>(<%= exercise.total_votes == 1 ? exercise.total_votes.to_s + ' vote' : exercise.total_votes.to_s + ' votes' %>)</small>
       <% end %>
@@ -29,7 +29,7 @@
   <% unless @workout.categories.first.nil? %>
     <dt>Category:</dt>
     <% @workout.categories.each do |category| %>
-      <dd><%= category.name.capitalize %></dd>
+      <dd><%= category.name %></dd>
     <% end %>
   <% end %>
   <% unless @workout.reps.nil? %>
@@ -50,6 +50,6 @@
   <% end %>
   <% unless @workout.comment.empty? %>
     <dt>Additional comment:</dt>
-    <dd><%= @workout.comment.capitalize %></dd>
+    <dd><%= @workout.comment %></dd>
   <% end %>
 </dl>

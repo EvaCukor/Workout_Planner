@@ -10,4 +10,10 @@ class EquipmentPiece < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   
   sluggable_column :name
+  
+  before_save :name
+  
+  def name=(s)
+    write_attribute(:name, s.to_s.capitalize)
+  end
 end

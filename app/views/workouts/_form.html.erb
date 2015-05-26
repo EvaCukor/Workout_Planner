@@ -7,7 +7,7 @@
     <div class="form-group">
       <%= f.label 'Exercises*' %><br/>
       <%= f.collection_check_boxes :exercise_ids, @exercises, :id, :name do |exercise| %>
-        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text.titleize} %>
+        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text} %>
       <% end %>
       
 <!--       <% @exercises.each do |exercise| %>      
@@ -24,7 +24,7 @@
     <div class="form-group">
       <%= f.label 'Categories' %><br/>
       <%= f.collection_check_boxes :category_ids, @categories, :id, :name do |cat| %>
-        <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text.capitalize} %>
+        <% cat.label(class: "checkbox-inline") {cat.check_box(class: "checkbox") + cat.text} %>
       <% end %>
     </div>
     <div class="form-group form-inline">

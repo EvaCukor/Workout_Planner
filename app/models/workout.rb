@@ -6,8 +6,7 @@ class Workout < ActiveRecord::Base
   has_many :workout_exercises
   has_many :exercises, through: :workout_exercises
   
-  has_many :workout_categories
-  has_many :categories, through: :workout_categories
+  has_many :categories, as: :categorizeable
   
   has_many :votes, as: :voteable
   
@@ -18,7 +17,18 @@ class Workout < ActiveRecord::Base
   
   sluggable_column :name
   
+  before_save :name
+  before_save :comment
+  
   def total_votes
     self.votes.where(vote: true).size - self.votes.where(vote: false).size
+  end
+  
+  def name=(s)
+    write_attribute(:name, s.to_s.titleize)
+  end
+  
+  def comment=(s)
+    write_attribute(:comment, s.to_s.capitalize)
   end
 end
