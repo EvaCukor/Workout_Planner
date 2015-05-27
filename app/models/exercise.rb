@@ -23,6 +23,8 @@ class Exercise < ActiveRecord::Base
   
   sluggable_column :name
   
+  mount_uploader :image, ImageUploader
+  
   before_save :name
   before_save :description
 

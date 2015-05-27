@@ -10,7 +10,7 @@
         <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text} %>
       <% end %>
       
-<!--       <% @exercises.each do |exercise| %>      
+<!--        <% @exercises.each do |exercise| %>      
         <small>(<%= exercise.total_votes == 1 ? exercise.total_votes.to_s + ' vote' : exercise.total_votes.to_s + ' votes' %>)</small>
         <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => "#viewModal_#{exercise.id}", class: 'listing' do %>
           <span class="glyphicon glyphicon-search"></span>&nbsp;

@@ -27,4 +27,8 @@
       <dd><%= category.name %></dd>
     <% end %>
   <% end %>
+  <% unless object.image_url.nil? %>
+    <dt>Image:</dt>
+    <dd><%= image_tag object.image_url(:thumb).to_s, class: 'thumbnail' %></dd>
+  <% end %>
 </dl>

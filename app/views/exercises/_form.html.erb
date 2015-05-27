@@ -9,6 +9,14 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= f.label :image, 'Select image' %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="form-group">
+      <%= f.label :remote_image_url, 'Or enter the image URL' %>  
+      <%= f.text_field :remote_image_url, class: "form-control" %> 
+    </div>
+    <div class="form-group">
       <%= f.label 'Targeted Body Part*' %><br/>
       <%= f.collection_check_boxes :body_part_ids, @body_parts, :id, :name do |bp| %>
         <% bp.label(class: "checkbox-inline") {bp.check_box(class: "checkbox") + bp.text} %>
