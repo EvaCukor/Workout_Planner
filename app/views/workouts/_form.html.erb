@@ -1,25 +1,19 @@
 <div id="form_container" class="container">
   <%= form_for @workout do |f| %>
-    <div class="form-group"> 
+    <div class="form-group">
       <%= f.label :name, 'Name*' %>
       <%= f.text_field :name, class: "form-control" %>
     </div>  
     <div class="form-group">
       <%= f.label 'Exercises*' %><br/>
-      <%= f.collection_check_boxes :exercise_ids, @exercises, :id, :name do |exercise| %>
-        <% exercise.label(class: "checkbox-inline") {exercise.check_box(class: "checkbox") + exercise.text} %>
-      <% end %>
-      
-<!--        <% @exercises.each do |exercise| %>      
-        <small>(<%= exercise.total_votes == 1 ? exercise.total_votes.to_s + ' vote' : exercise.total_votes.to_s + ' votes' %>)</small>
-        <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => "#viewModal_#{exercise.id}", class: 'listing' do %>
-          <span class="glyphicon glyphicon-search"></span>&nbsp;
-        <% end %>
-        <%= render 'exercise_modal', exercise: exercise %>
-      <% end %> -->
-      
+      <small>(click on the looking glass icon to see exercise details)</small><br/>
+      <%= f.collection_check_boxes :exercise_ids, @exercises, :id, :name do |exe| %>
+        <% exe.label(class: "checkbox-inline") { exe.check_box(class: "checkbox") + exe.text + " #{link_to '<span class=\'glyphicon glyphicon-search\'></span>'.html_safe, '#', 'data-toggle' => 'modal', 'data-target' => "#viewModal_#{exe.object.id}", class: 'listing'}".html_safe } %>
+      <% end %>      
     </div>
-  
+    <% @exercises.each do |exercise| %>
+      <%= render 'exercise_modal', exercise: exercise %>
+    <% end %>
   
     <div class="form-group">
       <%= f.label 'Categories' %><br/>
@@ -29,11 +23,11 @@
     </div>
     <div class="form-group form-inline">
       <%= f.label :reps, 'The number of repetitions for each exercise:' %>
-      <%= f.number_field :reps, class: "form-control", min: 1 %>
+      <%= f.number_field :reps, class: "form-control", min: 1, value: 1 %>
     </div>
     <div class="form-group form-inline">
       <%= f.label :sets, 'The number of sets:' %>
-      <%= f.number_field :sets, class: "form-control", min: 1 %>
+      <%= f.number_field :sets, class: "form-control", min: 1, value: 1 %>
     </div>
     <div class="form-group form-inline">
       <label>The duration of intervals: </label>

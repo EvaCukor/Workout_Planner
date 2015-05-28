@@ -13,7 +13,7 @@
       <div class="col-md-3 column_border">
         <%= render 'shared/column_title', column_title: 'Exercises by Users' %>
         <%= link_to users_exercises_path, remote: true, class: 'listing' do %>
-        <span class="glyphicon glyphicon-chevron-right"></span><%= ' All exercises' %>
+          <span class="glyphicon glyphicon-chevron-right"></span><%= ' All exercises' %>
         <% end %>
         <hr/>
         <%= link_to user_path(current_user), remote: true, class: 'listing' do %>

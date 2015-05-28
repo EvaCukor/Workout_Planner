@@ -12,7 +12,8 @@ class Exercise < ActiveRecord::Base
   has_many :workout_exercises
   has_many :workouts, through: :workout_exercises
   
-  has_many :categories, as: :categorizeable
+  has_many :exercise_categories
+  has_many :categories, through: :exercise_categories
   
   has_many :votes, as: :voteable
   

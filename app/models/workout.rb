@@ -6,7 +6,8 @@ class Workout < ActiveRecord::Base
   has_many :workout_exercises
   has_many :exercises, through: :workout_exercises
   
-  has_many :categories, as: :categorizeable
+  has_many :workout_categories
+  has_many :categories, through: :workout_categories
   
   has_many :votes, as: :voteable
   

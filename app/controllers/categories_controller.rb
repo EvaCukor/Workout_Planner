@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   
   def create
     @category = Category.new(categories_params)
+    @category.creator = current_user
     
     if @category.save
       flash[:notice] = "Category created!"
@@ -22,8 +23,10 @@ class CategoriesController < ApplicationController
   def show
     respond_to do |format|
       @category = Category.find_by(slug: params[:id])
+      #@category_exercises = Category.find_by(categorizeable_type: 'Exercise')
+      #@category_workouts = Category.find_by(categorizeable_type: 'Workout')
       format.js
-      format.html   
+      format.html
     end
   end
   

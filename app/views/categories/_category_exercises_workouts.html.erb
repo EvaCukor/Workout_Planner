@@ -1,7 +1,7 @@
 <%= render 'shared/column_title', column_title: @category.name %>
 
 <h5 class="column_title">Exercises</h5>
-<%= render 'shared/associated_exercises_or_workouts', obj: @category.exercises, css_id: 'exercises_list', destination: 'exercises/exercises_list' %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @category.exercises, div_id: 'exercises_list', destination: 'exercises/exercises_list' %>
 <br/>
 <h5 class="column_title">Workouts</h5>
-<%= render 'shared/associated_exercises_or_workouts', obj: @category.workouts, css_id: 'workouts_list', destination: 'workouts/workouts_list' %>
+<%= render 'shared/associated_exercises_or_workouts', obj: @category.workouts, div_id: 'workouts_list', destination: 'workouts/workouts_list' %>

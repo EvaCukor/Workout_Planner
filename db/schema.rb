@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527183426) do
+ActiveRecord::Schema.define(version: 20150528193115) do
 
   create_table "body_parts", force: true do |t|
     t.string   "name"
@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20150527183426) do
     t.string   "name"
     t.string   "slug"
     t.integer  "user_id"
-    t.integer  "categorizeable_id"
-    t.string   "categorizeable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +38,11 @@ ActiveRecord::Schema.define(version: 20150527183426) do
   create_table "exercise_body_parts", force: true do |t|
     t.integer "exercise_id"
     t.integer "body_part_id"
+  end
+
+  create_table "exercise_categories", force: true do |t|
+    t.integer "exercise_id"
+    t.integer "category_id"
   end
 
   create_table "exercise_equipment_pieces", force: true do |t|
@@ -73,6 +76,11 @@ ActiveRecord::Schema.define(version: 20150527183426) do
     t.string   "voteable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "workout_categories", force: true do |t|
+    t.integer "workout_id"
+    t.integer "category_id"
   end
 
   create_table "workout_exercises", force: true do |t|

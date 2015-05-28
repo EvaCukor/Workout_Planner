@@ -14,6 +14,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'spring'
+  gem 'pry'
 end
 
 gem 'bootstrap-sass', '~> 3.3.4'
