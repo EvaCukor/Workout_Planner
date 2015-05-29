@@ -12,8 +12,14 @@ group :doc do
 end
 
 group :development do
-  #gem 'sqlite3'
+  gem 'sqlite3'
   gem 'spring'
+  gem 'pry'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -24,4 +30,3 @@ gem 'figaro'
 gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'sqlite3', '1.3.10'
