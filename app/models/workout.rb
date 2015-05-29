@@ -19,7 +19,6 @@ class Workout < ActiveRecord::Base
   sluggable_column :name
   
   before_save :name
-  before_save :comment
   
   def total_votes
     self.votes.where(vote: true).size - self.votes.where(vote: false).size
@@ -27,9 +26,5 @@ class Workout < ActiveRecord::Base
   
   def name=(s)
     write_attribute(:name, s.to_s.titleize)
-  end
-  
-  def comment=(s)
-    write_attribute(:comment, s.to_s.capitalize)
   end
 end

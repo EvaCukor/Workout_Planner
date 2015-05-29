@@ -27,7 +27,6 @@ class Exercise < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   
   before_save :name
-  before_save :description
 
   def has_at_least_one_body_part
     if body_parts.empty?
@@ -41,9 +40,5 @@ class Exercise < ActiveRecord::Base
   
   def name=(s)
     write_attribute(:name, s.to_s.titleize)
-  end
-  
-  def description=(s)
-    write_attribute(:description, s.to_s.capitalize)
   end
 end
