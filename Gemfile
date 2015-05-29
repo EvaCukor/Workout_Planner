@@ -12,7 +12,7 @@ group :doc do
 end
 
 group :development do
-  gem 'sqlite3'
+  #gem 'sqlite3'
   gem 'spring'
 end
 
@@ -24,3 +24,4 @@ gem 'figaro'
 gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'sqlite3', '1.3.10'
