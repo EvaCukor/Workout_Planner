@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   position: fixed;
-  background-image: url("bk-eco-ga.jpg");
+  background: image-url("bk-eco-ga.jpg");
 }
 
 #app_name {
@@ -83,7 +83,7 @@
 }
 
 .navbar-default {
-  background-image: url("bk-eco-ga.jpg");
+  background: image-url("bk-eco-ga.jpg");
 }
 
 .nav.navbar-nav li a, .nav.navbar-nav p, .navbar-default .navbar-brand {
