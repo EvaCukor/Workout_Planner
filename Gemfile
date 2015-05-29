@@ -12,14 +12,14 @@ group :doc do
 end
 
 group :development do
-  gem 'sqlite3'
+  
   gem 'spring'
-  gem 'pry'
 end
 
 gem 'bootstrap-sass', '~> 3.3.4'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'sluggable_eva', '= 0.0.0'
 gem 'will_paginate', '~> 3.0.6'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'sqlite3'
