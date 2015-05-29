@@ -13,10 +13,4 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create, length: {minimum: 5}
   
   sluggable_column :username
-  
-  before_save :username
-  
-  def username=(s)
-    write_attribute(:username, s.to_s.titleize)
-  end
 end

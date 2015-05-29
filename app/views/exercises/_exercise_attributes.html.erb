@@ -3,7 +3,7 @@
   <% if logged_in? && (current_user == object.creator) %>
     <dd>Me</dd>
   <% else %>
-    <dd><%= object.creator.username %></dd>
+  <dd><%= object.creator.username.titleize %></dd>
   <% end %>
   <% unless object.description.empty? %>
     <dt>Description:</dt>

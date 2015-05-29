@@ -8,4 +8,4 @@ An application for creating exercises and workouts using your own or other users
 **Rails version:** 4.1.0
 
 ### Database creation and initialization
-Run `rake db:migrate` and then `rake db:seed` (or just `rake db:setup`) to load the initial data into the Body Parts and Equipments Pieces tables.
+Run `rake db:migrate` and then `rake db:seed` (or just `rake db:setup`) to load the initial data into the Body Parts and Equipment Pieces tables.

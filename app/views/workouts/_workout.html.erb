@@ -11,7 +11,7 @@
   <% if logged_in? && (current_user == @workout.creator) %>
     <dd>Me</dd>
   <% else %>
-    <dd><%= @workout.creator.username %></dd>
+    <dd><%= @workout.creator.username.titleize %></dd>
   <% end %>
   
   <dt>Exercises:</dt>  
